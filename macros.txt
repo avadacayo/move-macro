@@ -1,0 +1,53 @@
+automacro init{
+	console /You are not a guildmaster/i
+	call init
+}
+macro init{
+	do pause 2
+	$origX = @eval($::char->{pos}{x})
+	$origY = @eval($::char->{pos}{y})
+}
+
+automacro town {
+	console /You are casting Sacrament on Player/i
+	exclusive 1
+	call move
+}
+
+macro move {
+	$p = @rand(1,3)
+	$randomNum = @rand(0,5)
+	do pause $p
+	log $randomNum
+	
+	$x = @eval($origX @random("+","-") @rand(1,3))
+	$y = @eval($origY @random("+","-") @rand(1,3))
+	
+	do pause 2
+	do move $x $y
+	if ($randomNum == 2) call upo
+	if ($randomNum == 5) call upo2
+}
+macro upo{
+ do sit
+ do e heh
+}
+macro upo2{
+ do sit
+}
+
+automacro town2 {
+	console /You are casting Blessing on Player/i
+	exclusive 1
+	call move2
+}
+
+macro move2 {
+	$p = @rand(1,3)
+	do pause $p
+	$x = @eval($origX @random("+","-") @rand(1,3))
+	$y = @eval($origY @random("+","-") @rand(1,3))
+	do pause 2
+    do move $origX $origY
+}
+
